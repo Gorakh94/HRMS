@@ -29,22 +29,22 @@ public class WaitExamples {
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		driver.get("http://the-internet.herokuapp.com/dynamic_loading/1");
-		//wait=new WebDriverWait(driver,Duration.ofSeconds(30));
+		wait=new WebDriverWait(driver,Duration.ofSeconds(30)); // Modified
 		
 	}
 
 	@Test(alwaysRun=true)
 	public void wait_test() {
 		String expected="Hello World!";
-	//	button=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div/button[text()='Start']")));
-		// button[normalize-space()='Start']
+		button=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div/button[text()='Start']"))); // updated line
+		//button[normalize-space()='Start']
 		
 		button=driver.findElement(By.xpath("//div/button[text()='Start']"));
 		button.click();
 		
-		//text=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='finish']//h4")));	//div[@id='finish']//h4
+		text=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='finish']//h4")));	//div[@id='finish']//h4
 	
-		text=driver.findElement(By.xpath("//div[@id='finish']//h4"));
+	//	text=driver.findElement(By.xpath("//div[@id='finish']//h4"));
 		String actual=text.getText();
 		
 		assertEquals(actual, expected,"Page not landed successfully.");
